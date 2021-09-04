@@ -1,6 +1,6 @@
 // API URL and Personal API Key
 const baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
-const apiKey = "&appid=880dc18e5e268b4d23f09732726c5b98";
+const apiKey = "880dc18e5e268b4d23f09732726c5b98&units=metric";
 
 // generate button
 const btn = document.getElementById("generate");
@@ -11,7 +11,7 @@ let newDate = d.getMonth() + 1 + "." + d.getDate() + "." + d.getFullYear();
 
 //  GET Weather Data from API
 const getData = async(baseURL, zipCode, apiKey) => {
-    const response = await fetch(baseURL + zipCode + ",us" + apiKey);
+    const response = await fetch(baseURL + zipCode + ",us" + "&appid=" + apiKey);
     try {
         const userData = await response.json();
         return userData;
@@ -67,7 +67,7 @@ const updateUI = async() => {
         document.getElementById("date").innerHTML = `Date: ${Data.date}`;
         document.getElementById(
             "temp"
-        ).innerHTML = `Temperature: ${Data.temperature}  &deg;K`;
+        ).innerHTML = `Temperature: ${Data.temperature}  &deg;C`;
         document.getElementById(
             "content"
         ).innerHTML = `Your Feeling: ${Data.feelings}`;
